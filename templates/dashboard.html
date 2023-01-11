@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+    <div class="main-section">
+        <div class="container mt-4">
+            {% include 'includes/alerts.html' %}
+            {% if user.is_authenticated and user.is_active %}
+                <div class="row justify-content-md-center mt-3">
+                  {% for item in items %}
+                      <div class="card-dashboard bg-light" style="width: 200px;">
+                        <img class="card-img-top" src="{{ item.picture.url }}" alt="Image">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-2 mt-1">{{ item.name }}</h5>
+                            <p class="card-text">
+                            {% if item.owner %}<strong>Owner:</strong> {{ item.owner }}<br>{% endif %}
+                                <strong>Price:</strong> {{ item.price | intcomma }} PLN<br>
+                            {% if item.description %}
+                            <div class="card-footer-dashboard">
+                                <small class="text-muted">{{ item.description | truncatechars:"40" }}</small>
+                            </div>
+                            {% endif %}
+                            </p>
+                        </div>
+                      </div>
+                  {% endfor %}
+                </div>
+            {% else %}
+                <div class="d-flex flex-row bd-highlight bg-light justify-content-center">
+                    <h6 class="mt-1">Please login to see this page. <a href="{% url 'login' %}" class="text-primary">Here</a></h6>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

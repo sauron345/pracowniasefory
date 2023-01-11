@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+    <div class="container mt-4">
+        {% include 'includes/alerts.html' %}
+        <form action="{% url 'login' %}" method="post" style="background-color: LightGray; padding: 25px;">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label">{{ field.label_tag }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <br>
+            <input class="btn btn-outline-dark" type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,56 @@
+.nav-header{
+    background-color: #1b1b1b;
+    border-radius: 10px;
+    color: #ffefef;
+    width: 300px;
+    text-align: center;
+    font-family: Arial;
+    font-style: italic;
+}
+
+.nav-header:hover{
+    color: rgba(224, 224, 224, 0.6);
+}
+
+.card-img-top{
+    width: 174px !important;
+    height: 179px !important;
+    border-style: inset;
+    margin-top: 5px;
+}
+
+.card-dashboard{
+    margin-left: 10px;
+    border-style: double;
+}
+
+.card-footer-dashboard{
+    border-style: groove;
+    padding: 2px;
+    font-family: Arial;
+}
+
+.nav-item-left{
+    margin-right: 1400px;
+}
+
+/*.nav-text.align {*/
+/*    margin-left: -63px;*/
+/*}*/
+
+.form-control {
+    width: 49%;
+}
+
+/*.alert.form {
+    margin-right: 51%;
+    margin-left: -11px;
+}*/
+
+.ph-number-register [name='phone_number'] {
+    width: 299px !important;
+}
+
+.nav-header {
+    padding: 10px;
+}
