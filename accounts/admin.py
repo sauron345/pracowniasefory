@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    list_display = ['first_name', 'last_name', 'username', 'email', 'created_date', 'is_active']
+    list_display = ['first_name', 'last_name', 'username', 'email', 'role', 'created_date', 'is_active']
     search_fields = ['first_name', 'last_name', 'username', 'email']
     list_editable = ['is_active']
     ordering = ('created_date',)

@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'items.context_processors.get_items_liked_counter',
             ],
         },
     },
@@ -113,6 +114,8 @@ AUTH_PASSWORD_VALIDATORS = [
 MESSAGE_TAGS = {
     messages.SUCCESS: 'success',
     messages.ERROR: 'danger',
+    messages.WARNING: 'warning',
+    messages.INFO: 'info',
 }
 
 
@@ -145,3 +148,11 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email configurations
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')  # if from_email = None will use default_from_email
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')  # secure connection

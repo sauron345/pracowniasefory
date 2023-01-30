@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}Item Details{% endblock title %}
+
+{% block content %}
+    <div class="main-section">
+        <div class="container mt-4 text-danger text-center p-0 pt-4 pb-5" style="background-color: LightGray; font-family: monospace;">
+            {% if item != None %}
+                <img src="{{ item.picture.url }}" style="border-color: wheat; border-style: inset" width="300" alt="Item Image"><br><br>
+                Owner: {{ item.owner }}<br>
+                Name: {{ item }}<br>
+                {% if item.category %}
+                    Category: {{ item.category }}
+                {% endif %}
+                Price: {{ item.price }} PLN<br>
+                {% if item.description %}
+                    Description: {{ item.description }}<br>
+                {% else %}
+                    Produkt nie posiada opisu.
+                {% endif %}
+            {% else %}
+                Item does not exists
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+

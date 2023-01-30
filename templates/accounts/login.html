@@ -14,6 +14,9 @@
                 </div>
             {% endfor %}
             <br>
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
             <input class="btn btn-outline-dark" type="submit" value="Submit">
         </form>
     </div>

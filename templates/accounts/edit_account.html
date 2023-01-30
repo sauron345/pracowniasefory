@@ -1,0 +1,81 @@
+{% extends 'base.html'%}
+
+{% block title %}Edit Account{% endblock title %}
+
+{% block content %}
+    <div class="container mt-4">
+        {% include 'includes/alerts.html' %}
+        <form action="{% url 'edit_account' %}" method="post" style="background-color: LightGray; padding: 25px;">
+             {% csrf_token %}
+             <div class="row">
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form.first_name.label_tag }}</label><br>
+                        {{ form.first_name }}
+                    </div>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                     <div class="mb-3">
+                         <label class="form-label">{{ form.last_name.label_tag }}</label><br>
+                        {{ form.last_name }}
+                     </div>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form.username.label_tag }}</label><br>
+                        {{ form.username }}
+                    </div>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form.email.label_tag }}</label><br>
+                        {{ form.email }}
+                    </div>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3 ph-number-register">
+                        <label class="form-label">{{ form.phone_number.label_tag }}</label><br>
+                        {{ form.phone_number }}
+                    </div>
+                 </div>
+                {% if not user.is_superuser %}
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3" style="margin-top: 2px;">
+                        <label class="form-label">{{ form.role.label_tag }}</label><br>
+                        {{ form.role }}
+                    </div>
+                 </div>
+                {% endif %}
+                 {% if user.is_superuser %}
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form.is_superuser.label_tag }}</label><br>
+                        <span onclick="return confirmAlertToChange('is_superuser', 'Are you sure? You will not be superuser anymore.')">
+                            {{ form.is_superuser }}
+                        </span>
+
+                    </div>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3 ph-number-register">
+                        <label class="form-label">{{ form.is_staff.label_tag }}</label><br>
+                        <span onclick="return confirmAlertToChange('is_staff', 'Are you sure? You will not have access to the admin panel.')">
+                            {{ form.is_staff }}
+                        </span>
+                    </div>
+                 </div>
+                 {% endif %}
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3 ph-number-register">
+                        <label class="form-label">{{ form.is_active.label_tag }}</label><br>
+                        <span onclick="return confirmAlertToChange('is_active', 'Are you sure you want to deactivate your account?')">
+                            {{ form.is_active }}
+                        </span>
+                    </div>
+                 </div>
+             </div>
+             <br>
+             <input class="btn btn-outline-dark" type="submit" value="Edit">
+        </form>
+    </div>
+{% endblock content %}

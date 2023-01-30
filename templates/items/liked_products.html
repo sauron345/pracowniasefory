@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}Liked Products{% endblock title %}
+
+{% block content %}
+    <div class="main-section">
+        <div class="container mt-4">
+            <div class="d-flex flex-row justify-content-center" style="background-color: LightGray">
+                <h6 class="mt-1"><i class="bi bi-bag-heart-fill">Your list of liked products!</i></h6>&nbsp;
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 4px;" width="20" height="20" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                    <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+                </svg>
+             </div>
+            <div class="row justify-content-md-center mt-3">
+                <div id="empty-liked-items-message" class="mt-5" style="display: none;">
+                    <h6 class="d-flex flex-row justify-content-center" style="background-color: LightGray; padding: 6px;"><i class="bi bi-bag-heart-fill">You don't have any liked products! Go back to dashboard&nbsp;<a href="{% url 'dashboard' %}" class="text-muted">Here</a></i></h6>
+                </div>
+                 {% for item_liked in items_liked %}
+                     {% for item in item_liked.items.all %}
+                          <div class="card-dashboard bg-light" style="width: 200px;" id="single-liked-item-{{ item.id }}">
+                            <a href="{% url 'item_details' item.id %}"><img class="card-img-top" style="border-color: wheat;" src="{{ item.picture.url }}" alt="Item Image"></a>
+                            <div class="card-body">
+                                <h5 class="card-title text-center mb-2 mt-1">{{ item.name }}</h5>
+                                &emsp; <a href="#" class="badge badge-danger" id="delete-liked-item-{{ item.id }}" data-id="{{ item.id }}" data-url="{% url 'delete_liked_product' item.id %}" onclick="return deleteLikedItem({{ item.id }});">remove from liked items</a>
+                                <p class="card-text">
+                                    {% if item.owner %}<strong>Owner:</strong> {{ item.owner }}<br>{% endif %}
+                                        <strong>Price:</strong> {{ item.price | intcomma }} PLN<br>
+                                    <div class="card-footer-dashboard">
+                                        Click <a href="{% url 'item_details' item.id %}" class="text-muted">here</a> to see details
+                                    </div>
+                                </p>
+                            </div>
+                          </div>
+                     {% endfor %}
+                 {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

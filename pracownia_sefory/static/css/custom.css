@@ -30,22 +30,9 @@
     font-family: Arial;
 }
 
-.nav-item-left{
-    margin-right: 1400px;
-}
-
-/*.nav-text.align {*/
-/*    margin-left: -63px;*/
-/*}*/
-
-.form-control {
+.form-control, .form-select{
     width: 49%;
 }
-
-/*.alert.form {
-    margin-right: 51%;
-    margin-left: -11px;
-}*/
 
 .ph-number-register [name='phone_number'] {
     width: 299px !important;
@@ -53,4 +40,32 @@
 
 .nav-header {
     padding: 10px;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    font-weight: bold;
+}
+
+.disabled {
+    color: #1b1b1b !important;
+}
+
+.badge-danger {
+    background-color: #b94a48;
+    padding: 4px;
+    margin-left: -7px;
+    margin-top: 4px;
+}
+
+#alert-icon {
+    padding: 1px;
+    margin-top: -4px;
+}
+
+.btn.btn-danger:hover {
+    background-color: #801818;
 }
